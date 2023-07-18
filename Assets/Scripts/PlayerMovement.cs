@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
+
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void FixedUpdate()
@@ -31,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float angle = -Mathf.Atan2(mousePos.x - transform.position.x, mousePos.y - transform.position.y) * Mathf.Rad2Deg;
-        // m_rb.rotation = angle;
         m_rb.MoveRotation(Quaternion.Euler(0, 0, angle));
     }
 
